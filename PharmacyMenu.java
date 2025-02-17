@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class PharmacyMenu {
     public static void main(String[] args) {
         MedicationTrackingSystem system = new MedicationTrackingSystem();
-        Scanner scanner = new Scanner(System.in); // Move scanner outside loop
+        Scanner scanner = new Scanner(System.in);
         boolean exit = false;
 
         while (!exit) {
