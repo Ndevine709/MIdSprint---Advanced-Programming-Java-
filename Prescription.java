@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 
 public class Prescription {
-    // Attributes
+    // attributes
     private String id;
     private Doctor doctor;
     private Patient patient;
@@ -36,7 +36,7 @@ public Doctor getDoctor(){
     return doctor;
 }
 
-public Doctor setDoctor(){
+public void setDoctor(Doctor doctor){
     this.doctor = doctor;
 }
 
@@ -44,7 +44,7 @@ public Patient getPatient(){
     return patient;
 }
 
-public Patient setPatient(Patient patient){
+public void setPatient(Patient patient){
     this.patient = patient;
 }
 
@@ -60,7 +60,7 @@ public LocalDate getDateIssued(){
     return dateIssued;
 }
 
-public LocalDate setDateIssued(LocalDate dateIssued){
+public void setDateIssued(LocalDate dateIssued){
     this.dateIssued = dateIssued;
 }
 
