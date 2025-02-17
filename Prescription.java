@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 
 public class Prescription {
-    // Attributes
+    // attributes
     private String id;
     private Doctor doctor;
     private Patient patient;
