@@ -62,6 +62,7 @@ public LocalDate getDateIssued(){
 
 public void setDateIssued(LocalDate dateIssued){
     this.dateIssued = dateIssued;
+    this.expiryDate = dateIssued.plusYears(1); // Autoset to one year from dateIssued
 }
 
 public LocalDate getExpiryDate(){
