@@ -80,7 +80,7 @@ public class PharmacyMenu {
     private static void addNewPatient(Scanner scanner, MedicationTrackingSystem system) {
     }
 
-    private static void addNewDoctor(Scanner scanner) {
+    private static void addNewDoctor(Scanner scanner, MedicationTrackingSystem system) {
     }
 
     private static void addNewMedicationToPharmacy(Scanner scanner, MedicationTrackingSystem system) {
