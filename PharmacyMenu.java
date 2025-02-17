@@ -34,7 +34,7 @@ public class PharmacyMenu {
                     addNewPatient(scanner, system);
                     break;
                 case 2:
-                    addNewDoctor(scanner);
+                    addNewDoctor(scanner, system);
                     break;
                 case 3:
                     addNewMedicationToPharmacy(scanner, system);
