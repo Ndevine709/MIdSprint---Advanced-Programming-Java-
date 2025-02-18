@@ -131,7 +131,7 @@ public class PharmacyMenu {
             system.getPatients().remove(toDelete);
             System.out.println("Patient with ID of " + patientID + " has been deleted");
         } else {
-            System.out.println("No patient found with an ID of " + patientID);
+            System.out.println("No patient found with an ID of: " + patientID);
         }
     }
 
@@ -181,7 +181,7 @@ public class PharmacyMenu {
             system.getDoctors().remove(toDelete);
             System.out.println("Doctor with ID of " + doctorID + " has been deleted");
         } else {
-            System.out.println("No patient found with an ID of " + doctorID);
+            System.out.println("No patient found with an ID of: " + doctorID);
         }
     }
 
