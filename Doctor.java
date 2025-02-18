@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Doctor extends Person {
     // attributes
     private String specialization;
-    private ArrayList<String> patients;
+    private ArrayList<Patient> patients;
 
     // constructor 
     public Doctor(String id, String name, int age, String phoneNumber, String specialization) {
@@ -13,7 +13,7 @@ public class Doctor extends Person {
     }
 
     // getters
-    public ArrayList<String> getPatients() {
+    public ArrayList<Patient> getPatients() {
         return patients;
     }
 
@@ -26,7 +26,7 @@ public class Doctor extends Person {
         this.specialization = specialization;
     }
 
-    public void addPatient(String patient) {
+    public void addPatient(Patient patient) {
         this.patients.add(patient);
     }
 
