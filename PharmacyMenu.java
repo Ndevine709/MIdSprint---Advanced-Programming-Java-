@@ -136,6 +136,42 @@ public class PharmacyMenu {
     }
 
     private static void editPatient(Scanner scanner, MedicationTrackingSystem system) {
+        System.out.print("Enter the ID of the patient to edit: ");
+        String patientID = scanner.nextLine();
+
+        Patient ToEdit = null;
+        for (Patient patient : system.getPatients()) {
+            if (patient.getID().equalsIgnoreCase(patientID)) {
+                ToEdit = patient;
+                break;
+            }
+        }
+
+        if (ToEdit != null) {
+            System.out.println("Editing Patient: " + ToEdit);
+
+            System.out.print("Enter new name (leave blank to keep current): ");
+            String newName = scanner.nextLine();
+            if (!newName.isEmpty()) {
+                ToEdit.setName(newName);
+            }
+
+            System.out.print("Enter new age (leave blank to keep current): ");
+            String newAge = scanner.nextLine();
+            if (!newAge.isEmpty()) {
+                ToEdit.setAge(Integer.parseInt(newAge));
+            }
+
+            System.out.print("Enter new phone number (leave blank to keep current): ");
+            String newPhoneNumber = scanner.nextLine();
+            if (!newPhoneNumber.isEmpty()) {
+                ToEdit.setPhoneNumber(newPhoneNumber);
+            }
+
+            System.out.println("Patient details have been updated.");
+        } else {
+            System.out.println("No patient found with ID of " + patientID);
+        }
     }
 
     private static void addNewDoctor(Scanner scanner, MedicationTrackingSystem system) {
@@ -186,6 +222,48 @@ public class PharmacyMenu {
     }
 
     private static void editDoctor(Scanner scanner, MedicationTrackingSystem system) {
+        System.out.print("Enter the ID of the doctor you would like to edit: ");
+        String doctorID = scanner.nextLine();
+    
+        Doctor toEdit = null;
+        for (Doctor doctor : system.getDoctors()) {
+            if (doctor.getID().equalsIgnoreCase(doctorID)) {
+                toEdit = doctor;
+                break;
+            }
+        }
+    
+        if (toEdit != null) {
+            System.out.println("Editing Doctor: " + toEdit);
+    
+            System.out.print("Enter new name (leave blank for same name): ");
+            String newName = scanner.nextLine();
+            if (!newName.isEmpty()) {
+                toEdit.setName(newName);
+            }
+    
+            System.out.print("Enter new age (leave blank for same age): ");
+            String newAge = scanner.nextLine();
+            if (!newAge.isEmpty()) {
+                toEdit.setAge(Integer.parseInt(newAge));
+            }
+    
+            System.out.print("Enter new phone number (leave blank for same number): ");
+            String newNumber = scanner.nextLine();
+            if (!newNumber.isEmpty()) {
+                toEdit.setPhoneNumber(newNumber);
+            }
+    
+            System.out.print("Enter new specialization (leave blank for same specialization): ");
+            String newSpecialization = scanner.nextLine();
+            if (!newSpecialization.isEmpty()) {
+                toEdit.setSpecialization(newSpecialization);
+            }
+    
+            System.out.println("Doctor details have been updated.");
+        } else {
+            System.out.println("No doctor found with an ID of " + doctorID);
+        }
     } // noah
 
     private static void addNewMedication(Scanner scanner, MedicationTrackingSystem system) {
