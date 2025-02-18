@@ -90,7 +90,30 @@ public class PharmacyMenu {
         scanner.close();
     }
 
-    private static void addNewPatient(Scanner scanner, MedicationTrackingSystem system) {}
+    private static void addNewPatient(Scanner scanner, MedicationTrackingSystem system) {
+        System.out.println("\nEnter Patient Details:");
+    
+        System.out.print("ID: ");
+        String id = scanner.nextLine();
+    
+        System.out.print("Name: ");
+        String name = scanner.nextLine();
+    
+        System.out.print("Age: ");
+        int age = scanner.nextInt();
+        scanner.nextLine();
+    
+        System.out.print("Phone Number: ");
+        String phoneNumber = scanner.nextLine();
+    
+        // store in memory
+        Patient newPatient = new Patient(id, name, age, phoneNumber);
+        system.addPatient(newPatient);
+    
+        // confirm patient was added
+        System.out.println("\nPatient added successfully!");
+    }
+    
     private static void deletePatient(Scanner scanner, MedicationTrackingSystem system) {}
     private static void editPatient(Scanner scanner, MedicationTrackingSystem system) {}
     private static void addNewDoctor(Scanner scanner, MedicationTrackingSystem system) {}
