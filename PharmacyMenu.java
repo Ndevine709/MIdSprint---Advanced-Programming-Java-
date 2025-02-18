@@ -114,9 +114,52 @@ public class PharmacyMenu {
         System.out.println("\nPatient added successfully!");
     }
     
-    private static void deletePatient(Scanner scanner, MedicationTrackingSystem system) {}
+    private static void deletePatient(Scanner scanner, MedicationTrackingSystem system) {
+        System.out.print("Enter the ID of the patient you would like to delete: ");
+        String patientID = scanner.nextLine();
+
+        Patient toDelete = null;
+
+        for (Patient patient: system.getPatients()) {
+            if (patient.getID().equalsIgnoreCase(patientID)) {
+                toDelete = patient;
+                break;
+            }
+        }
+        if (toDelete != null) {
+            system.getPatients().remove(toDelete);
+            System.out.println("Patient with ID of " + patientID + " has been deleted");
+        } else {
+            System.out.println("No patient found with an ID of " + patientID);
+        }
+    }
     private static void editPatient(Scanner scanner, MedicationTrackingSystem system) {}
-    private static void addNewDoctor(Scanner scanner, MedicationTrackingSystem system) {}
+    private static void addNewDoctor(Scanner scanner, MedicationTrackingSystem system) {
+        System.out.println("\nEnter Doctor Details:");
+    
+        System.out.print("ID: ");
+        String id = scanner.nextLine();
+    
+        System.out.print("Name: ");
+        String name = scanner.nextLine();
+    
+        System.out.print("Age: ");
+        int age = scanner.nextInt();
+        scanner.nextLine();
+    
+        System.out.print("Phone Number: ");
+        String phoneNumber = scanner.nextLine();
+
+        System.out.print("Doctor Specialization");
+        String specialization = scanner.nextLine();
+    
+        // store in memory
+        Doctor newDoctor = new Doctor(id, name, age, phoneNumber, specialization);
+        system.addDoctor(newDoctor);
+    
+        // confirm new doctor was added
+        System.out.println("\nDoctor added successfully!");
+    }
     private static void deleteDoctor(Scanner scanner, MedicationTrackingSystem system) {}
     private static void editDoctor(Scanner scanner, MedicationTrackingSystem system) {} // noah
     private static void addNewMedication(Scanner scanner, MedicationTrackingSystem system) {}

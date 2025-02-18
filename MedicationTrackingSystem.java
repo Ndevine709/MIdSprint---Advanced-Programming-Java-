@@ -13,6 +13,11 @@ public class MedicationTrackingSystem {
         patients.add(patient);
     }
 
+    //method to get patients
+    public List<Patient> getPatients() {
+        return patients;
+    }
+
     // method to add doctor
     public void addDoctor(Doctor doctor) {
         doctors.add(doctor);
