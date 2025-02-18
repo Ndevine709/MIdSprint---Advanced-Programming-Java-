@@ -160,7 +160,25 @@ public class PharmacyMenu {
         // confirm new doctor was added
         System.out.println("\nDoctor added successfully!");
     }
-    private static void deleteDoctor(Scanner scanner, MedicationTrackingSystem system) {}
+    private static void deleteDoctor(Scanner scanner, MedicationTrackingSystem system) {
+        System.out.print("Enter the ID of the doctor you would like to delete: ");
+        String doctorID = scanner.nextLine();
+
+        Doctor toDelete = null;
+
+        for (Doctor doctor: system.getDoctors()) {
+            if (doctor.getID().equalsIgnoreCase(doctorID)) {
+                toDelete = doctor;
+                break;
+            }
+        }
+        if (toDelete != null) {
+            system.getDoctors().remove(toDelete);
+            System.out.println("Doctor with ID of " + doctorID + " has been deleted");
+        } else {
+            System.out.println("No patient found with an ID of " + doctorID);
+        }
+    }
     private static void editDoctor(Scanner scanner, MedicationTrackingSystem system) {} // noah
     private static void addNewMedication(Scanner scanner, MedicationTrackingSystem system) {}
     private static void deleteMedication(Scanner scanner, MedicationTrackingSystem system) {}

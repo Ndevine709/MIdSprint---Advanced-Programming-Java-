@@ -18,6 +18,11 @@ public class MedicationTrackingSystem {
         return patients;
     }
 
+    //method to get doctors
+    public List <Doctor> getDoctors() {
+        return doctors;
+    }
+
     // method to add doctor
     public void addDoctor(Doctor doctor) {
         doctors.add(doctor);
