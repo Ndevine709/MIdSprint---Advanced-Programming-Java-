@@ -118,15 +118,15 @@ public class PharmacyMenu {
     private static void editPatient(Scanner scanner, MedicationTrackingSystem system) {}
     private static void addNewDoctor(Scanner scanner, MedicationTrackingSystem system) {}
     private static void deleteDoctor(Scanner scanner, MedicationTrackingSystem system) {}
-    private static void editDoctor(Scanner scanner, MedicationTrackingSystem system) {}
+    private static void editDoctor(Scanner scanner, MedicationTrackingSystem system) {} // noah
     private static void addNewMedication(Scanner scanner, MedicationTrackingSystem system) {}
     private static void deleteMedication(Scanner scanner, MedicationTrackingSystem system) {}
     private static void editMedication(Scanner scanner, MedicationTrackingSystem system) {}
     private static void searchRecords(Scanner scanner, MedicationTrackingSystem system) {}
-    private static void acceptPrescription(Scanner scanner, MedicationTrackingSystem system) {}
+    private static void acceptPrescription(Scanner scanner, MedicationTrackingSystem system) {} // chris
     private static void assignPatientToDoctor(Scanner scanner, MedicationTrackingSystem system) {}
-    private static void generateSystemReport(MedicationTrackingSystem system) {}
+    private static void generateSystemReport(MedicationTrackingSystem system) {} // function done need to be called from MTS.java
     private static void generateExpiredMedicationReport(MedicationTrackingSystem system) {}
     private static void printPrescriptionsByDoctor(Scanner scanner, MedicationTrackingSystem system) {}
-    private static void restockAllMedications(Scanner scanner, MedicationTrackingSystem system) {}
+    private static void restockAllMedications(Scanner scanner, MedicationTrackingSystem system) {} // laura.
 }
