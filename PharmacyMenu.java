@@ -114,14 +114,14 @@ public class PharmacyMenu {
         // confirm patient was added
         System.out.println("\nPatient added successfully!");
     }
-    
+
     private static void deletePatient(Scanner scanner, MedicationTrackingSystem system) {
         System.out.print("Enter the ID of the patient you would like to delete: ");
         String patientID = scanner.nextLine();
 
         Patient toDelete = null;
 
-        for (Patient patient: system.getPatients()) {
+        for (Patient patient : system.getPatients()) {
             if (patient.getID().equalsIgnoreCase(patientID)) {
                 toDelete = patient;
                 break;
@@ -135,42 +135,43 @@ public class PharmacyMenu {
         }
     }
 
-    private static void editPatient(Scanner scanner, MedicationTrackingSystem system) {}
+    private static void editPatient(Scanner scanner, MedicationTrackingSystem system) {
+    }
 
     private static void addNewDoctor(Scanner scanner, MedicationTrackingSystem system) {
         System.out.println("\nEnter Doctor Details:");
-    
+
         System.out.print("ID: ");
         String id = scanner.nextLine();
-    
+
         System.out.print("Name: ");
         String name = scanner.nextLine();
-    
+
         System.out.print("Age: ");
         int age = scanner.nextInt();
         scanner.nextLine();
-    
+
         System.out.print("Phone Number: ");
         String phoneNumber = scanner.nextLine();
 
         System.out.print("Doctor Specialization");
         String specialization = scanner.nextLine();
-    
+
         // store in memory
         Doctor newDoctor = new Doctor(id, name, age, phoneNumber, specialization);
         system.addDoctor(newDoctor);
-    
+
         // confirm new doctor was added
         System.out.println("\nDoctor added successfully!");
     }
-    
+
     private static void deleteDoctor(Scanner scanner, MedicationTrackingSystem system) {
         System.out.print("Enter the ID of the doctor you would like to delete: ");
         String doctorID = scanner.nextLine();
 
         Doctor toDelete = null;
 
-        for (Doctor doctor: system.getDoctors()) {
+        for (Doctor doctor : system.getDoctors()) {
             if (doctor.getID().equalsIgnoreCase(doctorID)) {
                 toDelete = doctor;
                 break;
@@ -183,8 +184,9 @@ public class PharmacyMenu {
             System.out.println("No patient found with an ID of " + doctorID);
         }
     }
-    
-private static void editDoctor(Scanner scanner, MedicationTrackingSystem system) {} // noah
+
+    private static void editDoctor(Scanner scanner, MedicationTrackingSystem system) {
+    } // noah
 
     private static void addNewMedication(Scanner scanner, MedicationTrackingSystem system) {
         System.out.println("\nEnter Medication Details:");
@@ -197,17 +199,18 @@ private static void editDoctor(Scanner scanner, MedicationTrackingSystem system)
 
         System.out.print("Dose (mg): ");
         double dose = scanner.nextDouble();
-        scanner.nextLine(); 
+        scanner.nextLine();
 
         System.out.print("Stock Quantity: ");
         int stockQuantity = scanner.nextInt();
-        scanner.nextLine(); 
+        scanner.nextLine();
 
         System.out.print("Expiry Date (YYYY-MM-DD): ");
         String expiryDateStr = scanner.nextLine();
-        LocalDate expiryDate = LocalDate.parse(expiryDateStr); // convert the input to date (googled this, need to look into it more)
+        LocalDate expiryDate = LocalDate.parse(expiryDateStr); // convert the input to date (googled this, need to look
+                                                               // into it more)
 
-        // stores the medication 
+        // stores the medication
         Medication newMedication = new Medication(id, name, dose, stockQuantity, expiryDate);
         system.addMedication(newMedication);
 
@@ -218,17 +221,17 @@ private static void editDoctor(Scanner scanner, MedicationTrackingSystem system)
     private static void deleteMedication(Scanner scanner, MedicationTrackingSystem system) {
         System.out.print("Enter the name of the medication you would like to delete: ");
         String medicationName = scanner.nextLine();
-    
+
         Medication toDelete = null;
-    
+
         // go through medications and find a match by name
         for (Medication medication : system.getMedications()) {
             if (medication.getName().equalsIgnoreCase(medicationName)) {
                 toDelete = medication;
-                break; 
+                break;
             }
         }
-    
+
         // remove the medication if found
         if (toDelete != null) {
             system.getMedications().remove(toDelete);
@@ -237,17 +240,96 @@ private static void editDoctor(Scanner scanner, MedicationTrackingSystem system)
             System.out.println("No medication found with the name \"" + medicationName + "\".");
         }
     }
-    
-    
 
     private static void editMedication(Scanner scanner, MedicationTrackingSystem system) {
+        System.out.print("\nEnter the name of the medication to edit: ");
+        String name = scanner.nextLine();
+
+        for (Medication medication : system.getMedications()) {
+            if (medication.getName().equalsIgnoreCase(name)) {
+                System.out.print("New Dose (mg): ");
+                medication.setDose(scanner.nextDouble());
+                scanner.nextLine();
+
+                System.out.print("New Stock Quantity: ");
+                medication.setStockQuantity(scanner.nextInt());
+                scanner.nextLine();
+
+                System.out.print("New Expiry Date (YYYY-MM-DD): ");
+                medication.setExpiryDate(LocalDate.parse(scanner.nextLine()));
+
+                System.out.println("\nMedication updated successfully!");
+                return;
+            }
+        }
+
+        System.out.println("No medication found with the name: " + name);
     }
 
     private static void searchRecords(Scanner scanner, MedicationTrackingSystem system) {
+        System.out.println("\nSearch for:");
+        System.out.println("1: Patient");
+        System.out.println("2: Medication");
+        System.out.println("3: Doctor");
+        System.out.print("Enter your choice: ");
+
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.print("Enter the name to search: ");
+        String name = scanner.nextLine();
+
+        boolean found = false; // easist way I found to error handel right now, but can look into future improvements
+
+        if (choice == 1) { 
+            for (Patient patient : system.getPatients()) {
+                if (patient.getName().equalsIgnoreCase(name)) {
+                    System.out.println("\nPatient Found: " + patient);
+                    found = true;
+                    break;
+                }
+            }
+        } else if (choice == 2) { 
+            for (Medication medication : system.getMedications()) {
+                if (medication.getName().equalsIgnoreCase(name)) {
+                    System.out.println("\nMedication Found: " + medication);
+                    found = true;
+                    break;
+                }
+            }
+        } else if (choice == 3) { 
+            for (Doctor doctor : system.getDoctors()) {
+                if (doctor.getName().equalsIgnoreCase(name)) {
+                    System.out.println("\nDoctor Found: " + doctor);
+                    found = true;
+                    break;
+                }
+            }
+        } else {
+            System.out.println("Invalid option.");
+            return;
+        }
+
+        if (!found) {
+            System.out.println("No record found with the name: " + name);
+        }
     }
 
     private static void acceptPrescription(Scanner scanner, MedicationTrackingSystem system) {
-    } // chris
+        System.out.print("\nEnter Doctor's Name: ");
+        String doctorName = scanner.nextLine();
+
+        System.out.print("Enter Patient's Name: ");
+        String patientName = scanner.nextLine();
+
+        System.out.print("Enter Medication Name: ");
+        String medicationName = scanner.nextLine();
+
+        // Add the prescription to the system
+        system.addPrescription(doctorName, patientName, medicationName);
+
+        System.out.println("\nPrescription accepted successfully!");
+    }// chris
 
     private static void assignPatientToDoctor(Scanner scanner, MedicationTrackingSystem system) {
     }
