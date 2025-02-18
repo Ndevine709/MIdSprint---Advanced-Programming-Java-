@@ -409,18 +409,60 @@ public class PharmacyMenu {
         System.out.println("\nPrescription accepted successfully!");
     }// chris
 
-    private static void assignPatientToDoctor(Scanner scanner, MedicationTrackingSystem system) {
+    private static void assignPatientToDoctor(Scanner scanner, MedicationTrackingSystem system) { 
+        // Prompt user for patients id
+        System.out.println("Please enter the Patient's ID: ");
+        String patientId = scanner.nextLine();
+
+        // Prompt user for doctors id
+        System.out.println("Please enter the Doctor's ID: ");
+        String doctorId = scanner.nextLine();
+
+        // Find patient in the system
+        Patient patient = system.findPatientById(patientId);
+        if(patient ==null){
+            System.out.println("Patient not found.");
+            return;
+        }
+
+        // Find doctor in the system
+        Doctor doctor = system.findDoctorById(doctorId);
+        if(doctor == null){
+            System.out.println("Doctor not found.");
+            return;
+        }
+
+        // Assign the patient to a doctor
+        doctor.addPatient(patient);
+        System.out.println("Patient " + patient.getName() + " has been assigned to Doctor " + doctor.getName()+ ".");
     }
 
     private static void generateSystemReport(MedicationTrackingSystem system) {
-    } // function done need to be called from MTS.java
+        system.generateReport();
+    } 
 
     private static void generateExpiredMedicationReport(MedicationTrackingSystem system) {
+        system.checkExpiredMedications();
     }
 
     private static void printPrescriptionsByDoctor(Scanner scanner, MedicationTrackingSystem system) {
+        System.out.println("Enter the doctor's name: ");
+        String doctorName = scanner.nextLine();
+        
+        // Call method to print prescetipions by doctor
+        system.printPrescriptionsByDoctor(doctorName);
     }
 
     private static void restockAllMedications(Scanner scanner, MedicationTrackingSystem system) {
-    } // laura
+        // Prompt user for restock quanitity
+        System.out.println("Please enter the restock quantity for all medications:");
+        int stockQuantity = scanner.nextInt();
+        scanner.nextLine();
+
+        // Restock each medication in the system
+        for (Medication medication : system.getMedications()){
+            medication.setStockQuantity(medication.getStockQuantity()+ stockQuantity);
+            System.out.println("Restocked " + medication.getName()+ "by"+ stockQuantity);
+        }
+    } 
 }

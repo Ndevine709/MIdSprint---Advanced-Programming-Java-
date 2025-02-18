@@ -38,6 +38,16 @@ public class MedicationTrackingSystem {
         return medications;
     }
 
+    // method to find doctor by ID
+    public Doctor findDoctorById(String id){
+        return doctors.stream().filter(doctor->doctor.getID().equals(id)).findFirst().orElse(null);
+    }
+
+    // method to find patient by ID
+    public Patient findPatientById(String id){
+        return patients.stream().filter(patient->patient.getID().equals(id)).findFirst().orElse(null);
+    }
+
     public void search(String name) {
         System.out.println("Searching for: " + name);
         // set a boolean to identify if anything is matched in the system
@@ -98,6 +108,10 @@ public class MedicationTrackingSystem {
     // find medication
     private Medication findMedication(String name) {
         return medications.stream().filter(medication -> medication.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
+    }
+    // get medication by name
+    public Medication getMedicationByName(String name){
+        return findMedication(name);
     }
 
     // creates a new prescription by finding a doctor, patient, and medication using
