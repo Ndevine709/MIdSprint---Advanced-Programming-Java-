@@ -133,7 +133,44 @@ public class PharmacyMenu {
             System.out.println("No patient found with an ID of " + patientID);
         }
     }
-    private static void editPatient(Scanner scanner, MedicationTrackingSystem system) {}
+    private static void editPatient(Scanner scanner, MedicationTrackingSystem system) {
+        System.out.print("Enter the ID of the patient you would like to edit: ");
+        String patientID = scanner.nextLine();
+
+        Patient toEdit = null;
+        for (Patient patient : system.getPatients()) {
+            if (patient.getID().equalsIgnoreCase(patientID)) {
+                toEdit = patient;
+                break;
+            }
+        }
+        if (toEdit != null) {
+            System.out.println("Editing Patient: " + toEdit);
+
+            System.out.print("Enter new name (leave blank for same name): ");
+            String newName = scanner.nextLine();
+            if (!newName.isEmpty()) {
+                toEdit.setName(newName);
+            }
+
+            System.out.print("Enter new age (leave blank for same name): ");
+            String newAge = scanner.nextLine();
+            if (!newAge.isEmpty()) {
+                toEdit.setAge(Integer.parseInt(newAge));
+            }
+
+            System.out.print("Enter new phone number (leave blank for same name): ");
+            String newNumber = scanner.nextLine();
+            if (!newNumber.isEmpty()) {
+                toEdit.setPhoneNumber(newNumber);
+            }
+
+            System.out.print("Patient details have been updated");
+        } else {
+            System.out.println("No patient found with an ID of " + patientID);
+        }
+        }
+    
     private static void addNewDoctor(Scanner scanner, MedicationTrackingSystem system) {
         System.out.println("\nEnter Doctor Details:");
     
@@ -179,7 +216,49 @@ public class PharmacyMenu {
             System.out.println("No patient found with an ID of " + doctorID);
         }
     }
-    private static void editDoctor(Scanner scanner, MedicationTrackingSystem system) {} // noah
+    private static void editDoctor(Scanner scanner, MedicationTrackingSystem system) {
+        System.out.print("Enter the ID of the doctor you would like to edit: ");
+        String doctorID = scanner.nextLine();
+
+        Doctor toEdit = null;
+        for (Doctor doctor : system.getDoctors()) {
+            if (doctor.getID().equalsIgnoreCase(doctorID)) {
+                toEdit = doctor;
+                break;
+            }
+        }
+        if (toEdit != null) {
+            System.out.println("Editing Doctor: " + toEdit);
+
+            System.out.print("Enter new name (leave blank for same name): ");
+            String newName = scanner.nextLine();
+            if (!newName.isEmpty()) {
+                toEdit.setName(newName);
+            }
+
+            System.out.print("Enter new age (leave blank for same name): ");
+            String newAge = scanner.nextLine();
+            if (!newAge.isEmpty()) {
+                toEdit.setAge(Integer.parseInt(newAge));
+            }
+
+            System.out.print("Enter new phone number (leave blank for same name): ");
+            String newNumber = scanner.nextLine();
+            if (!newNumber.isEmpty()) {
+                toEdit.setPhoneNumber(newNumber);
+            }
+
+            System.out.print("Enter new specialization (leave blank for same specialization)");
+            String newSpecial = scanner.nextLine();
+            if (!newSpecial.isEmpty()) {
+                toEdit.setSpecialization(newSpecial);
+            }
+
+            System.out.print("Doctor details have been updated");
+        } else {
+            System.out.println("No doctor found with an ID of " + doctorID);
+        }
+    } // noah
     private static void addNewMedication(Scanner scanner, MedicationTrackingSystem system) {}
     private static void deleteMedication(Scanner scanner, MedicationTrackingSystem system) {}
     private static void editMedication(Scanner scanner, MedicationTrackingSystem system) {}
