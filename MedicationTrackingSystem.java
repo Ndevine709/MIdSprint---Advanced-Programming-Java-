@@ -33,6 +33,11 @@ public class MedicationTrackingSystem {
         medications.add(medication);
     }
 
+    // method to get medications
+    public List<Medication> getMedications() {
+        return medications;
+    }
+
     public void search(String name) {
         System.out.println("Searching for: " + name);
         // set a boolean to identify if anything is matched in the system
