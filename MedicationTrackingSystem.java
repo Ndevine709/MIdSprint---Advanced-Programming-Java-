@@ -109,7 +109,7 @@ public class MedicationTrackingSystem {
     private Medication findMedication(String name) {
         return medications.stream().filter(medication -> medication.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
     }
-
+    // get medication by name
     public Medication getMedicationByName(String name){
         return findMedication(name);
     }
