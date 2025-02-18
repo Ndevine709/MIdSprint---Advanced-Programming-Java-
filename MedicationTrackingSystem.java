@@ -8,18 +8,18 @@ public class MedicationTrackingSystem {
     private List<Medication> medications = new ArrayList<>();
     private List<Prescription> prescriptions = new ArrayList<>();
 
-    //method to add patient
+    // method to add patient
     public void addPatient(Patient patient) {
         patients.add(patient);
     }
 
-    //method to get patients
+    // method to get patients
     public List<Patient> getPatients() {
         return patients;
     }
 
-    //method to get doctors
-    public List <Doctor> getDoctors() {
+    // method to get doctors
+    public List<Doctor> getDoctors() {
         return doctors;
     }
 
@@ -39,13 +39,13 @@ public class MedicationTrackingSystem {
     }
 
     // method to find doctor by ID
-    public Doctor findDoctorById(String id){
-        return doctors.stream().filter(doctor->doctor.getID().equals(id)).findFirst().orElse(null);
+    public Doctor findDoctorById(String id) {
+        return doctors.stream().filter(doctor -> doctor.getID().equals(id)).findFirst().orElse(null);
     }
 
     // method to find patient by ID
-    public Patient findPatientById(String id){
-        return patients.stream().filter(patient->patient.getID().equals(id)).findFirst().orElse(null);
+    public Patient findPatientById(String id) {
+        return patients.stream().filter(patient -> patient.getID().equals(id)).findFirst().orElse(null);
     }
 
     public void search(String name) {
@@ -90,10 +90,11 @@ public class MedicationTrackingSystem {
         }
     }
 
-
     // other findings to make this easier
-    // created a way to search through each set of data, doctor, patient, and medication
-    // using the stream function which converts the list into a stream (a pipeline for processing data).
+    // created a way to search through each set of data, doctor, patient, and
+    // medication
+    // using the stream function which converts the list into a stream (a pipeline
+    // for processing data).
 
     // find doctor
     private Doctor findDoctor(String name) {
@@ -107,10 +108,12 @@ public class MedicationTrackingSystem {
 
     // find medication
     private Medication findMedication(String name) {
-        return medications.stream().filter(medication -> medication.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
+        return medications.stream().filter(medication -> medication.getName().equalsIgnoreCase(name)).findFirst()
+                .orElse(null);
     }
+
     // get medication by name
-    public Medication getMedicationByName(String name){
+    public Medication getMedicationByName(String name) {
         return findMedication(name);
     }
 
@@ -147,10 +150,23 @@ public class MedicationTrackingSystem {
     // if a prescription was issued by the specified doctor, it prints the
     // prescription details.
     public void printPrescriptionsByDoctor(String doctorName) {
+        System.out.println("\n=== Prescriptions by Dr. " + doctorName + " ===");
+        boolean found = false;
+
         for (Prescription prescription : prescriptions) {
             if (prescription.getDoctor().getName().equalsIgnoreCase(doctorName)) {
-                System.out.println(prescription);
+                System.out.println("Prescription ID: " + prescription.getID());
+                System.out.println("Patient: " + prescription.getPatient().getName());
+                System.out.println("Medication: " + prescription.getMedication().getName());
+                System.out.println("Date Issued: " + prescription.getDateIssued());
+                System.out.println("Expiry Date: " + prescription.getExpiryDate());
+                System.out.println("-----------------------------------");
+                found = true;
             }
+        }
+
+        if (!found) {
+            System.out.println("No prescriptions found for Dr. " + doctorName);
         }
     }
 
