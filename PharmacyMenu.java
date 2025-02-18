@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class PharmacyMenu {
@@ -92,24 +93,24 @@ public class PharmacyMenu {
 
     private static void addNewPatient(Scanner scanner, MedicationTrackingSystem system) {
         System.out.println("\nEnter Patient Details:");
-    
+
         System.out.print("ID: ");
         String id = scanner.nextLine();
-    
+
         System.out.print("Name: ");
         String name = scanner.nextLine();
-    
+
         System.out.print("Age: ");
         int age = scanner.nextInt();
         scanner.nextLine();
-    
+
         System.out.print("Phone Number: ");
         String phoneNumber = scanner.nextLine();
-    
+
         // store in memory
         Patient newPatient = new Patient(id, name, age, phoneNumber);
         system.addPatient(newPatient);
-    
+
         // confirm patient was added
         System.out.println("\nPatient added successfully!");
     }
@@ -133,7 +134,9 @@ public class PharmacyMenu {
             System.out.println("No patient found with an ID of " + patientID);
         }
     }
+
     private static void editPatient(Scanner scanner, MedicationTrackingSystem system) {}
+
     private static void addNewDoctor(Scanner scanner, MedicationTrackingSystem system) {
         System.out.println("\nEnter Doctor Details:");
     
@@ -160,6 +163,7 @@ public class PharmacyMenu {
         // confirm new doctor was added
         System.out.println("\nDoctor added successfully!");
     }
+    
     private static void deleteDoctor(Scanner scanner, MedicationTrackingSystem system) {
         System.out.print("Enter the ID of the doctor you would like to delete: ");
         String doctorID = scanner.nextLine();
@@ -179,15 +183,84 @@ public class PharmacyMenu {
             System.out.println("No patient found with an ID of " + doctorID);
         }
     }
-    private static void editDoctor(Scanner scanner, MedicationTrackingSystem system) {} // noah
-    private static void addNewMedication(Scanner scanner, MedicationTrackingSystem system) {}
-    private static void deleteMedication(Scanner scanner, MedicationTrackingSystem system) {}
-    private static void editMedication(Scanner scanner, MedicationTrackingSystem system) {}
-    private static void searchRecords(Scanner scanner, MedicationTrackingSystem system) {}
-    private static void acceptPrescription(Scanner scanner, MedicationTrackingSystem system) {} // chris
-    private static void assignPatientToDoctor(Scanner scanner, MedicationTrackingSystem system) {}
-    private static void generateSystemReport(MedicationTrackingSystem system) {} // function done need to be called from MTS.java
-    private static void generateExpiredMedicationReport(MedicationTrackingSystem system) {}
-    private static void printPrescriptionsByDoctor(Scanner scanner, MedicationTrackingSystem system) {}
-    private static void restockAllMedications(Scanner scanner, MedicationTrackingSystem system) {} // laura.
+    
+private static void editDoctor(Scanner scanner, MedicationTrackingSystem system) {} // noah
+
+    private static void addNewMedication(Scanner scanner, MedicationTrackingSystem system) {
+        System.out.println("\nEnter Medication Details:");
+
+        System.out.print("ID");
+        String id = scanner.nextLine();
+
+        System.out.print("Name: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Dose (mg): ");
+        double dose = scanner.nextDouble();
+        scanner.nextLine(); 
+
+        System.out.print("Stock Quantity: ");
+        int stockQuantity = scanner.nextInt();
+        scanner.nextLine(); 
+
+        System.out.print("Expiry Date (YYYY-MM-DD): ");
+        String expiryDateStr = scanner.nextLine();
+        LocalDate expiryDate = LocalDate.parse(expiryDateStr); // convert the input to date (googled this, need to look into it more)
+
+        // stores the medication 
+        Medication newMedication = new Medication(id, name, dose, stockQuantity, expiryDate);
+        system.addMedication(newMedication);
+
+        // confirm medication was added
+        System.out.println("\nMedication added successfully!");
+    }
+
+    private static void deleteMedication(Scanner scanner, MedicationTrackingSystem system) {
+        System.out.print("Enter the name of the medication you would like to delete: ");
+        String medicationName = scanner.nextLine();
+    
+        Medication toDelete = null;
+    
+        // go through medications and find a match by name
+        for (Medication medication : system.getMedications()) {
+            if (medication.getName().equalsIgnoreCase(medicationName)) {
+                toDelete = medication;
+                break; 
+            }
+        }
+    
+        // remove the medication if found
+        if (toDelete != null) {
+            system.getMedications().remove(toDelete);
+            System.out.println("Medication with name \"" + medicationName + "\" has been deleted.");
+        } else { // let you know if one cannot be found
+            System.out.println("No medication found with the name \"" + medicationName + "\".");
+        }
+    }
+    
+    
+
+    private static void editMedication(Scanner scanner, MedicationTrackingSystem system) {
+    }
+
+    private static void searchRecords(Scanner scanner, MedicationTrackingSystem system) {
+    }
+
+    private static void acceptPrescription(Scanner scanner, MedicationTrackingSystem system) {
+    } // chris
+
+    private static void assignPatientToDoctor(Scanner scanner, MedicationTrackingSystem system) {
+    }
+
+    private static void generateSystemReport(MedicationTrackingSystem system) {
+    } // function done need to be called from MTS.java
+
+    private static void generateExpiredMedicationReport(MedicationTrackingSystem system) {
+    }
+
+    private static void printPrescriptionsByDoctor(Scanner scanner, MedicationTrackingSystem system) {
+    }
+
+    private static void restockAllMedications(Scanner scanner, MedicationTrackingSystem system) {
+    } // laura
 }
