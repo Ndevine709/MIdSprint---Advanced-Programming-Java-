@@ -16,10 +16,7 @@ public class Medication{
         this.stockQuantity = stockQuantity;
         this.expiryDate = expiryDate;
     }
-
-    public Medication(){
-    }
-
+    
     // Getters and Setters
 
     public String getID(String id){
