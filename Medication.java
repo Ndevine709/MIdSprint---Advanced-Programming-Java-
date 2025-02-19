@@ -17,6 +17,9 @@ public class Medication{
         this.expiryDate = expiryDate;
     }
 
+    public Medication(){
+    }
+
     // Getters and Setters
 
     public String getID(String id){
