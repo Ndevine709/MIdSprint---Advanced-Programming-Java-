@@ -19,9 +19,6 @@ public Prescription(String id, Doctor doctor, Patient patient, Medication medica
     this.expiryDate = expiryDate;
 }
 
-public Prescription(){
-
-}
     // Getters and setters
 
 public String getID(){
